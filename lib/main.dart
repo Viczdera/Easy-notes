@@ -1,92 +1,16 @@
 import 'package:flutter/material.dart';
 
-String getFullName(String firstName, String lastName) {
-  return '$firstName $lastName';
-}
-
 void main() {
   runApp(const MyApp());
 }
 
-void tList(List<String>? names) {
-  if (names != null) {
-    final length = names.length;
-  }
+Future<int> additionFuture(int value) {
+  return Future.delayed(const Duration(seconds: 2), () => value * 2);
 }
 
-//factory constructors
-class Cat {
-  final String name;
-  Cat(this.name);
-  factory Cat.fluffBall() {
-    return Cat('Fluff boss');
-  }
-}
-
-//extension
-extension Run on Cat {
-  void run() {
-    print('$name is a cute cat');
-  }
-}
-
-//person class and extension
-class Person {
-  final String firstName;
-  final String lastName;
-  Person(this.firstName, this.lastName);
-}
-
-extension GetFullName on Person {
-  String get fullName => '$firstName $lastName'; //returns first and lastname
-}
-
-void factConst() {
-  final catname = Cat.fluffBall();
-  print(catname.name);
-}
-
-class LivingThings {
-  void breathe() {
-    print("Some living things breathing");
-  }
-
-  void move() {
-    print("I am moving");
-  }
-}
-
-class Dog extends LivingThings {}
-
-void inheritance() {
-  final fluffers = Dog();
-  fluffers.move();
-  fluffers.breathe();
-}
-
-void test() {
-  final meow = Cat('Fluffers');
-  final person = Person('Dera', 'V');
-  meow.run();
-  print(person.fullName);
-
-  print(getFullName('Izu', 'Dera'));
-  final name = 'Dera';
-  if (name == 'Dera') print('This Dera');
-  print('Holla you!');
-
-  //null
-  const String? nameN = null;
-  List<String?>? names = [];
-  const String? fName = null;
-  const String? mName = 'Blane';
-  const String? lName = 'Izu';
-  //??= * doesn't work on constants
-  // fName ??= lName;
-  // const firstNonNullVal = fName ?? mName ?? lName;
-
-  // print(firstNonNullVal);
-  print(nameN);
+void test() async {
+  final additionRes = await additionFuture(5);
+  print(additionRes);
 }
 
 class MyApp extends StatelessWidget {
@@ -96,9 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     test();
-    inheritance();
 
-    factConst();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
